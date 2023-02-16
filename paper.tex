@@ -1,0 +1,33 @@
+\documentclass[]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
+
+\newenvironment{sketch}{
+	\renewcommand{\proofname}{Sketch of Proof}\proof}{\endproof}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\begin{document}
+\title{Differentiable Manifolds and the Hairy Ball Theorem}
+\author{Jonathan Lau}
+\maketitle
+
+\section{Manifolds and Tangent Spaces}
+
+\begin{definition}[Manifold]
+    Let $M$ be a Hausdorff, second countable, locally $\mathbb{R}^n$ topological space. A chart is a pair $(U, \phi)$ where $U$ is open in $M$ and $\phi:U\rightarrow \mathbb{R}^n$ is a homeomorphism onto its image. An atlas $\mathcal{A}$ on $M$ is a collection of charts that cover $M$ such that if $(U,\phi),(V,\psi)\in \mathcal{A}$, the functions $\psi\circ\phi^{-1}$ and $\phi\circ\psi^{-1}$ are smooth on $\phi(U\cap V)$ and $\psi(U\cap V)$ respectively. Each atlas is contained in a unique maximal atlas. A manifold is the space $M$ together with a maximal atlas $\mathcal{A}$.
+\end{definition}
+
+\begin{definition}[Smooth maps between manifolds]
+    A continuous map $F:N\rightarrow M$ between manifolds is smooth if for all charts $(U, \phi)$ on $N$ and $(V, \psi)$ on $M$, the map $\phi\circ F\circ\psi^{-1}$ is smooth.
+\end{definition}
+
+stuff
+
+\end{document}

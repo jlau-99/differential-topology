@@ -1,0 +1,91 @@
+\documentclass[9pt]{beamer}
+%\usepackage{amsmath,amssymb,amsthm,tikz-cd}
+\usetheme{Madrid}
+\usecolortheme{default}
+\DeclareMathOperator{\Hom}{Hom}
+
+\title[Differentiable manifolds and the Hairy Ball Theorem]
+{Differentiable manifolds and the Hairy Ball Theorem}
+
+\author[Jonathan Lau] % (optional)
+{Jonathan Lau}
+
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+	
+\frame{\titlepage}
+
+\begin{frame}
+	\frametitle{Table of Contents}
+	\tableofcontents
+\end{frame}
+
+\section{Manifolds}
+	
+\begin{frame}
+    \begin{block}{Manifolds}
+        A $n$ dimensional manifold is a subset of $\mathbb{R}^\ell$ such that for each point $p$, there is a neighborhood $U$ and a homeomorphism $\phi:U\rightarrow V\subset \mathbb{R}^n$ such that $\phi$ and $\phi^{-1}$ are smooth.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{block}{Tangent Space}
+        Given a point $p\in M$ and a smooth curve $\gamma:(-1,1)\rightarrow M$ in $M$ such that $\gamma(0)=p$, its velocity vector is $\frac{d\gamma}{dt}\vert_{t=0}$. The set of all velocity vectors at $p$ is the tangent space at $p$, denoted $T_p M$.
+    \end{block}
+    If we fix a neighborhood $U$ of $p$ and a $\phi:U\rightarrow V\subset \mathbb{R}^n$ centered at $p$, construct curves $\gamma_i:t\mapsto \phi^{-1}\circ\iota_i(t)$, where $\iota_i$ is the inclusion into the $i$th coordinate. Their velocity vectors form a basis for the tangent space.
+
+    Example: sphere
+\end{frame}
+
+\begin{frame}
+    \begin{block}{1-form}
+        A 1-form $\omega$ is a linear function from $T_p M$ to $\mathbb{R}$. $\hom(T_p M, \mathbb{R})$ is a vector space of dimension $n$, with basis $dx^i$, $dx^i(a_1, \dots, a_n) = a_i$.
+    \end{block}
+
+    \begin{block}{$k$-form}
+        A $k$-form $\omega$ is an alternating multilinear function from $(T_p M)^k$ to $\mathbb{R}$.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{block}{Wedge Product}
+        The wedge product of $k$ 1-forms $\omega_1, \dots, \omega_k$ is the k-form $\omega^1\wedge\dots\wedge\omega^k(v_1, \dots, v_k)=det(\omega_i(v_j))$.
+    \end{block}
+
+    \begin{block}{Theorem}
+        $\{dx^{i_1}\wedge\dots\wedge dx^{i_k}|1\leq i_i<\dots<i_k\leq n\}$ is a basis for $\Lambda^k(T_pM)$, the set of alternating multilinear functions on $(T_pM)^k$.
+    \end{block}
+
+    Example: On $\mathbb{R}^3$, the form $dx\wedge dy$ applied to $(1,2,3),(0,1,2)$ is $det((1,2)^T(0,1)^T)=1$. We see that 
+\end{frame}
+
+\begin{frame}
+    \begin{block}{stuff}
+        stuff ...
+    \end{block}
+\end{frame}
+
+\section{Stokes' Theorem}
+
+\begin{frame}
+    \begin{block}{stuff}
+        stuff ...
+    \end{block}
+\end{frame}
+
+\section{The Hairy Ball Theorem}
+
+\begin{frame}
+    \begin{block}{stuff}
+        stuff ...
+    \end{block}
+\end{frame}
+
+\end{document}
