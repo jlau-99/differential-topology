@@ -42,21 +42,20 @@
     \begin{block}{Upper Half Space}
         The upper half space is $\mathcal{H}^n=\{(x_1, \dots, x_n)\in \mathbb{R}^n\mid x_n >= 0\}$. Its boundary is $\partial \mathcal{H}^n = \{(x_1, \dots, x_n)\in \mathbb{R}^n\mid x_n = 0\}$.
     \end{block}
+    \includegraphics[scale=0.6]{upper_half.PNG}
 
+\end{frame}
+\begin{frame}
     \begin{block}{Charts}
         A chart on a topological space $M$ is a pair $(U, \phi)$ consisting of an open $U\subset M$ and a homeomorphism $\phi:U\rightarrow V\subset\mathbb{H}^n$.
     \end{block}
 
     We can express $\phi$ as $(x_1, \dots, x_n)$.
 
+    \includegraphics[scale=0.6]{chart.PNG}
+
     Example: sphere
     
-    \begin{block}{Smooth maps}
-        Let $S$ be a subset of $\mathbb{R}^n$. A map $f:S \rightarrow \mathbb{R}^m$ is smooth at $p$ if there exists a neighborhood $U$ of $p$ and a smooth function $f':U \rightarrow \mathbb{R}^m$ such that $f'=f$ on $U\cap S$. If $f$ is smooth at every $p\in S$, then $f$ is smooth on $S$.
-
-        In addition, if $F$ is bijective and $F^{-1}$ is smooth, then $F$ is called a diffeomorphism.
-    \end{block}
-
 \end{frame}
 
 \begin{frame}
@@ -74,6 +73,11 @@
         Let $M$ be a manifold with boundary. A point $p$ is a boundary point if for some chart $(U, \phi)$, $\phi(p)\in \partial \mathcal{H}^n$. The set of all boundary points is the boundary $\partial M$.
     \end{block}
 
+
+\includegraphics[scale=0.6]{boundaryPNG.PNG}
+
+\end{frame}
+\begin{frame}
     \begin{block}{Manifold}
         A manifold with boundary $M$ with empty boundary is called a manifold. 
     \end{block}
@@ -89,8 +93,9 @@
         Let $M$ be a manifold. Given a point $p\in M$ and a smooth curve $\gamma:(-1,1)\rightarrow M$ in $M$ such that $\gamma(0)=p$, its velocity vector is $\frac{d\gamma}{dt}\vert_{t=0}$. The set of all velocity vectors at $p$ is the tangent space at $p$, denoted $T_p M$.
     \end{block}
     Let $(U, \phi)$ with $\phi(p)=0$, and let $\gamma_i:t\mapsto \phi^{-1}\circ\iota_i(t)$. Then, $e_i=\frac{\partial \gamma_i}{\partial t}$ form a basis for $T_pM$. We call this the basis induced by $\phi$.
-
-    Example: sphere
+\begin{center}
+    \includegraphics[scale=0.8]{tangent_vectors.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -150,7 +155,7 @@
 
 \end{frame}
 
-\section{Integration of Differential $n$-Forms}
+\section{Integration of Differential \texorpdfstring{$n$}{n}-Forms}
 \begin{frame}
     \begin{block}{Orientation}
         An orientation on a manifold with boundary is a non-vanishing differential $n$-form.
@@ -161,7 +166,7 @@
     \end{block}
 
     \begin{block}{Theorem}
-        \[Orientations \iff Oriented atlas\]
+        \[\text{Orientations} \iff \text{Oriented atlas}\]
         \[ \omega \iff \omega_p(e_1,\dots,e_n)>0,\] where $e_1,\dots,e_n$ is the basis induced by $(U, \phi)$.
     \end{block}
 \end{frame}
@@ -173,11 +178,11 @@
 
     \begin{block}{Pullback}
         Let $\omega_p\in \Lambda^kT_pM$ and $F:N \rightarrow  M$. The pullback of $\omega_p$ by $F$ is $F^*(\omega_p)\in \Lambda^kT_pN$, defined as \[F^*(\omega_p)(v_1,\dots,v_k)=\omega_p(F_*(v_1),\dots, F_*(v_k)).\]
-        The pullback of a differential form $\omega$ is defined as $(F^*\omega)_p=^*(\omega_p)$.
+        The pullback of a differential form $\omega$ is defined as $(F^*\omega)_p=F^*(\omega_p)$.
     \end{block}
 
     \begin{block}{Integration on a chart}
-        Let $\omega$ be a $n$-form on $(U, \phi)$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_{\phi^{-1}(U)}(\phi^{-1})^*\omega$. 
+        Let $\omega$ be a $n$-form on $(U, \phi)$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_{\phi(U)}(\phi^{-1})^*\omega$. 
     \end{block}
 \end{frame}
 
@@ -202,14 +207,6 @@
 
 \begin{frame}
     \begin{block}{Stokes' theorem on Manifolds}
-        stuff ...
-    \end{block}
-\end{frame}
-
-\section{The Hairy Ball Theorem}
-
-\begin{frame}
-    \begin{block}{stuff}
         stuff ...
     \end{block}
 \end{frame}
