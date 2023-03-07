@@ -42,12 +42,15 @@
     \begin{block}{}
         The upper half space is $\mathcal{H}^n=\{(x_1, \dots, x_n)\in \mathbb{R}^n\mid x_n \geq 0\}$. Its boundary is $\partial \mathcal{H}^n = \{(x_1, \dots, x_n)\in \mathbb{R}^n\mid x_n = 0\}$.
     \end{block}
-    \includegraphics[scale=0.6]{upper_half.PNG}
+    \begin{center}
+        
+        \includegraphics[scale=0.6]{upper_half.PNG}
+    \end{center}
 
 \end{frame}
 \begin{frame}{Charts}
 
-    \includegraphics[scale=0.6]{chart.PNG}
+    \includegraphics[scale=0.8]{chart.PNG}
     
 \end{frame}
 
@@ -57,7 +60,7 @@
 \end{frame}
 
 \begin{frame}{Boundary}
-    \includegraphics[scale=0.6]{boundaryPNG.PNG}
+    \includegraphics[scale=0.6]{boundary.PNG}
 \end{frame}
 
 \begin{frame}{Examples}
@@ -70,32 +73,8 @@
     \includegraphics[scale=0.6]{torus1.PNG}
 \end{frame}
 
-\begin{frame}{Examples}
-    \includegraphics[scale=0.6]{mobius.PNG}
-\end{frame}
-
-\begin{frame}{Examples}
-    $GL(n, \mathbb{R}), SL(n, \mathbb{R})$
-
-    e.g. \[GL(2, \mathbb{R})=\left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}\mid ad-bc\neq0\right\}\]
-    \[SL(2, \mathbb{R})=\left\{\begin{pmatrix}a&b\\c&d\end{pmatrix}\mid ad-bc=1\right\}\]
-\end{frame}
-
-\begin{frame}{Boundary}
-
-    \begin{block}{Proposition: Boundary is manifold}
-        Let $M$ be a manifold with non empty boundary. Then, $\partial M$ is a manifold with empty boundary.
-    \end{block}
-    proof: Let $\mathcal{A}$ be an atlas on $M$. For each $(U, x_1, \dots, x_n)\in \mathcal{A}$, we construct a chart on $(U\cap \partial M , x_1|_{\partial M}, \dots, x_{n-1}|_{\partial M})$ on $\partial M$.
-\end{frame}
-
-
 \section{Tangent Space and differential forms}
-\begin{frame}{Tangent vectors}
-\begin{center}
-    \includegraphics[scale=0.4]{uppersphere.png}
-\end{center}
-\end{frame}
+
 
 \begin{frame}{Tangent Space}
     \begin{center}
@@ -104,11 +83,10 @@
     \end{center}
 \end{frame}
 
-\begin{frame}{Tangent Space}
-    \begin{center}
-        
-    \includegraphics[scale=0.5]{tangent.PNG}
-    \end{center}
+\begin{frame}{Tangent vectors}
+\begin{center}
+    \includegraphics[scale=0.4]{uppersphere.png}
+\end{center}
 \end{frame}
 
 \begin{frame}{Smooth Functions}
@@ -119,25 +97,29 @@
 
 \begin{frame}{Differential}
 
-    \includegraphics[scale=0.45]{Untitled drawing.jpg}
+    \includegraphics[scale=0.6]{differential.PNG}
 \end{frame}
 
+\begin{frame}{Alternating multilinear}
+    \begin{center}
+        Alternating:
 
-\begin{frame}{Wedge product}
-    Example: $dx_1\wedge dx_3((0,0,1), (2,2,2))$.
-    
-    \includegraphics[scale=0.5]{Untitled drawing (1).png}
-    
+        $\omega_p(v_1, \dots, v_i, v_{i+1}, \dots, v_k)=-\omega_p(v_1, \dots, v_{i+1}, v_1, \dots, v_k)$\\[15pt]
+
+        Multilinear:
+
+        $\omega_p(v_1, \dots,v_i+cw_i, \dots, v_k)=\omega_p(v_1, \dots,v_i, \dots, v_k)+c\omega_p(v_1, \dots,w_i, \dots, v_k)$
+    \end{center}
 \end{frame}
-
 
 \section{Integration of Differential \texorpdfstring{$n$}{n}-Forms}
 
 \begin{frame}
     \begin{block}{Partition of Unity}
-        A partition of Unity on a manifold $M$ is a collection of nonnegative smooth functions $\{\rho_\alpha:M \rightarrow \mathbb{R}\}_{\alpha\in A}$ such that \begin{enumerate}[i]
+        Let $\{(U_\alpha, \phi_\alpha)\}_{\alpha\in A}$ be an atlas on $M$. A partition of unity on a manifold $M$ is a collection of nonnegative smooth functions $\{\rho_\alpha:M \rightarrow \mathbb{R}\}_{\alpha\in A}$ such that \begin{enumerate}[i]
             \item the collection of supports, $\{\supp\rho_\alpha\}_{\alpha\in A}$, is locally finite,
             \item $\sum_{\alpha\in A} \rho_\alpha = 1.$
+            \item $\supp \rho_\alpha\subset U_\alpha$ for all $\alpha\in A$.
         \end{enumerate}
     \end{block}
 \end{frame}
@@ -146,6 +128,18 @@
     \begin{block}{Stokes' theorem}
     Let $M$ be an oriented $n$ dimensional manifold with non empty boundary, and let $\omega$ be a differential $(n-1)$-form on $M$ with compact support. Give $\partial M$ the boundary orientation, and let $\iota:\partial M \rightarrow M$ be the inclusion map. Writing $\int_{\partial M}\iota^*\omega$ as $\int_{\partial M}\omega$, \[\int_{\partial M}\omega = \int_Md\omega\]
     \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{align*}
+        \int_0^\infty \frac{\partial f_i}{\partial x_i}dx_i=&\lim_{a \rightarrow \infty}\int_0^a \frac{\partial f_i}{\partial x_i} dx_i\\
+        =&\lim_{a \rightarrow \infty}(f_i(\dots,a,\dots)-f_i(\dots,0,\dots))\\
+        =&-f_i(\dots,0,\dots)\\
+        \int_{-\infty}^0 \frac{\partial f_i}{\partial x_i}dx_i=&\lim_{a \rightarrow -\infty}\int_a^0 \frac{\partial f_i}{\partial x_i} dx_i\\
+        =&\lim_{a \rightarrow \infty}(f_i(\dots,0,\dots)-f_i(\dots,a,\dots))\\
+        =&f_i(\dots,0,\dots)\\
+        \int_{-\infty}^\infty\frac{\partial f_i}{\partial x_i}dx_i=&0
+    \end{align*}
 \end{frame}
 
 \begin{frame}{Green's theorem}

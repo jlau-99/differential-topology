@@ -58,7 +58,7 @@ Many properties of smooth maps on open sets also hold for smooth maps on arbitra
 \end{proof}
 
 \begin{definition}
-    A $n$ dimensional manifold with boundary $M$ is a Hausdorff, second countable topological space together with a maximal atlas.
+    A $n$ dimensional manifold $M$ is a Hausdorff, second countable topological space together with a maximal atlas.
 \end{definition}
 
 By Theorem 1.4, to construct a manifold, we only need to specify a topological space and an atlas. We write $M$ instead of $(M, \mathcal{A})$ for manifolds. From now on, when we say a chart on $M$, we mean a chart in $\mathcal{A}$.
@@ -78,18 +78,13 @@ By Theorem 1.4, to construct a manifold, we only need to specify a topological s
 \end{proof}
 
 \begin{definition}
-    Let $M$ be a manifold with boundary. A point $p$ is a boundary point if for some chart $(U, \phi)$, $\phi(p)\in \partial \mathcal{H}^n$. The set of all boundary points is the boundary $\partial M$.
+    Let $M$ be a manifold. A point $p\in M$ is a boundary point if for some chart $(U, \phi)$, $\phi(p)\in \partial \mathcal{H}^n$. The set of all boundary points is the boundary $\partial M$.
 \end{definition}
 
-Suppose $(U,\phi),(V,\psi)$ are charts containing $p$, with $\phi(p)\in\partial \mathcal{H}^n $. By Corollary 1.7, $\psi(p)=\psi\circ\phi^{-1}(\phi(p))$ is also a boundary point, so boundary points are well defined.
-
-
-\begin{definition}
-    A manifold with boundary $M$ with empty boundary is called a manifold. For all charts $(U, \phi)$, the image of $\phi$ will be an open set in $\mathbb{R}^n$.
-\end{definition}
+Suppose $(U,\phi),(V,\psi)$ are charts containing $p$, with $\phi(p)\in\partial \mathcal{H}^n $. By Corollary 1.7, $\psi(p)=\psi\circ\phi^{-1}(\phi(p))$ is also a boundary point. Thus, $\psi(p)$ is a boundary point for all charts $(V, \psi)$. If the boundary of a manifold is empty, then for any chart $(U, \phi)$, $\phi(U)$ is open in $\mathbb{R}^n$.
 
 \begin{proposition}
-    Let $M$ be a manifold with non empty boundary. Then, $\partial M$ is a manifold.
+    Let $M$ be a manifold with non empty boundary. Then, $\partial M$ is a manifold with empty boundary.
 \end{proposition}
 \begin{proof}
     Let $\mathcal{A}$ be an atlas on $M$. For each $(U, \phi)\in \mathcal{A}$, we construct a chart $(U\cap \partial M , \phi|_{\partial M})$ on $\partial M$. These charts are compatible, and map into $\mathbb{R}^{n-1}$, so $\partial M$ is a manifold of dimension $n-1$.
@@ -155,7 +150,7 @@ It is straightforward to check that $T_pM$ is a vector space, and that $F_*$ is 
 We define $(dx_1)_p, \dots, (dx_n)_p$ to be the dual basis of $\frac{\partial}{\partial x_1}|_p, \dots, \frac{\partial}{\partial x_n}|_p$. By a result in multilinear algebra, $\{(dx_{i_1})_p\wedge\dots\wedge(dx_{i_k})_p\mid 1\leq i_1<\dots<i_n\leq n\}$ is a basis for $\Lambda^kT_pM$. If we fix a chart $(U, x_1, \dots, x_n)$, then we can write $\omega=\sum a_Idx_I$, where $a_I$ are real valued functions on $U$.
 
 \begin{definition}
-Let $\omega$ be a $k$-form. If for every chart $(U, x_1, \dots, x_n)$, the coefficients $a_I$ in $\omega=\sum a_Idx_I$ are smooth, then $\omega$ is smooth. The set of smooth $k$-forms is denoted $\Omega^k(M)$. The graded algebra $\bigoplus \Omega^k(M)$ is denoted $\Omega^*(M)$.
+Let $\omega$ be a $k$-form. We say that $\omega$ is smooth if for every chart $(U, x_1, \dots, x_n)$, the coefficients $a_I$ in $\omega=\sum a_Idx_I$ are smooth. The set of smooth $k$-forms is denoted by $\Omega^k(M)$. The graded algebra $\bigoplus \Omega^k(M)$ is denoted $\Omega^*(M)$.
 \end{definition}
 
 \begin{definition}
@@ -192,9 +187,11 @@ Let $\omega$ be a $k$-form. If for every chart $(U, x_1, \dots, x_n)$, the coeff
 \end{proposition}
 
 \section{Integration of Differential $n$-Forms}
+From now on, we assume that for manifolds $M$ and charts $(U, \phi)$, $M$ and $U$ are path connected.
 
+Let $\omega$, $\tau$ be non-vanishing differential $n$-forms, and $(U, \phi)$ be a chart. That is, $\omega_p$ and $\tau_p$ are not the zero maps for all $p\in M$. Then, $\omega=\sum_{i=1}^{n}f dx_1\wedge\dots\wedge dx_n$ and $\tau=\sum_{i=1}^{n}g dx_1\wedge\dots\wedge dx_n$ for smooth functions $f, g$. Since $\omega, \tau$ are non vanishing $f, g$ are non vanishing. By path connectedness and the intermediate value theorem, we see that $f$ and $g$ are either positive or negative. Furthermore, $\omega=f/g\tau$ on $U$. This holds for all charts, so $\omega=f\tau$ for some positive or negative $f$.
 \begin{definition}
-    An orientation on a manifold with boundary is a non-vanishing differential $n$-form.
+    Let $\omega\sim \tau$ if $\omega=f\tau$ for some positive $f$, where $\omega, \tau$ are non vanishing differential $n$-forms. This is an equivalence relation, and the equivalence classes are called orientations. If a manifold has an orientation, it is orientable. A manifold together with an orientation is an oriented manifold.
 \end{definition}
 
 \begin{definition}
@@ -206,12 +203,22 @@ Let $\omega$ be a $k$-form. If for every chart $(U, x_1, \dots, x_n)$, the coeff
     \[ \omega \iff \omega_p(e_1,\dots,e_n)>0,\] where $e_1,\dots,e_n$ is the basis induced by $(U, \phi)$.
 \end{theorem}
 
+\begin{definition}
+    Let $f:S \rightarrow \mathbb{R}$ for some topological space $S$. The support of $f$, $\supp(f)$, is the closure of the set $\{p\in S\mid f(p)\neq 0\}$. Let $\omega\in \Omega^k(M)$. The support of $\omega$ is the closure of the set $\{p\in M\mid \omega_p\neq 0\}$.
+\end{definition}
+
 \begin{definition}[Integration on a $\mathbb{R}^n$]
-    Let $\omega$ be a $n$-form on $(U, \phi)$, where $U\subset\mathbb{R}^n$. Then $\omega=f(x)dx_1\wedge\dots\wedge dx_n$ for some smooth $f$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_U f$.
+    Let $\omega$ be a differential $n$-form with compact support on $(U, \phi)$, where $U\subset\mathbb{R}^n$. Then $\omega=f(x)dx_1\wedge\dots\wedge dx_n$ for some smooth $f$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_U f$.
 \end{definition}
 
 \begin{definition}[Integration on a chart]
-    Let $\omega$ be a $n$-form on $(U, \phi)$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_{\phi^{-1}(U)}(\phi^{-1})^*\omega$. 
+    Let $\omega$ be a differential $n$-form with compact support on $(U, \phi)$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_{\phi(U)}(\phi^{-1})^*\omega$. 
+\end{definition}
+
+We show that the integral does not depend on $\phi$. Let $\phi, \psi$ be two coordinate functions on $U$. By the change of variables formula, $\int_{\phi(U)}(\phi^{-1})^*\omega=\int_{\psi(U)}$
+
+\begin{definition}
+    A collection $\{A_\alpha \}$ of subsets of a topological space $S$ is said to be locally finite if every point $q$ in $S$ has a neighborhood that meets only finitely many of the sets $\{A_\alpha \}$.
 \end{definition}
 
 \begin{definition}[Partition of Unity]
@@ -222,9 +229,32 @@ Let $\omega$ be a $k$-form. If for every chart $(U, x_1, \dots, x_n)$, the coeff
     \end{enumerate}
 \end{definition}
 
-\begin{definition}[Integration on a Manifold]
-    Let $\omega$ be a $n$-form on $M$. The integral of $\omega$ over $M$, denoted by $\int_M \omega$, is defined to be $\sum_{\alpha\in A}\int_{U_\alpha}\rho_\alpha\omega$.
+\begin{definition}
+    Let $\{U_\alpha\}_{\alpha\in A}$ be a collection of subsets on $M$. A partition of unity $\{\rho_\alpha\}$ is subordinate to $\{U_\alpha\}$ if $\supp\rho_\alpha\in U_\alpha$.
 \end{definition}
+
+\begin{theorem}
+    Let $\{U_\alpha\}$ be an open cover of $M$. Then, there exists a partition of unity subordinate to $\{U_\alpha\}$.
+\end{theorem}
+\begin{proof}
+    See [Tu, Theorem 13.7, p.347].
+\end{proof}
+
+\begin{proposition}
+    Let $\{\rho_\alpha\}_{\alpha\in A}$ be a collection of functions on $M$, and $\omega$ be a differential $k$-form with compact support. If $\{\supp \rho_\alpha\}_{\alpha\in A}$ is locally finite, then $\rho_\alpha\omega\equiv0$ for all but finitely many $\alpha$.
+\end{proposition}
+
+\begin{proof}
+    For each $p\in \supp\omega$, let $U_p$ be a neighborhood of $p$ that intersects finitely many $\supp\rho_\alpha$. Then the $U_p$ is an open cover of $\supp\omega$, so there is a finite subcover $U_{p_1}, \dots, U_{p_k}$. Each $U_{p_i}$ only intersects finitely many $\supp\rho_\alpha$, so $\supp\omega$ only intersects finitely many $\supp\rho_\alpha$. Finally, since \[\{p\in M\mid \rho_\alpha(p)\omega_p\}\subset\{p\in M\mid \rho_\alpha(p)\neq 0\}\cap \{p\in M\mid \omega_p\neq 0\},\] $\supp(\rho_\alpha\omega)\subset \supp\rho_\alpha\cap \supp\omega$. So, $\supp(\rho_\alpha\omega)$ is nonempty for finitely many $\alpha$.
+\end{proof}
+
+\begin{definition}[Integration on a Manifold]
+    Let $\omega$ be a differential $n$-form on an oriented manifold $M$, and let $\{\rho_\alpha\}$ be a partition of unity subordinate to the oriented atlas. The integral of $\omega$ over $M$, denoted by $\int_M \omega$, is defined to be $\sum_{\alpha\in A}\int_{U_\alpha}\rho_\alpha\omega$.
+\end{definition}
+
+For the definition to make sense, we need to show that the integral does not depend on the atlas and the partition of unity.
+
+Let $\{(U_\alpha, \phi_\alpha)\}$ and $\{(V_\beta, \psi_\beta)\}$ be oriented atlases and $\{\rho_\alpha\}, \{\chi_\beta\}$ be subordinate partitions of unity. 
 
 \begin{theorem}
     Let $\omega$ be a smooth $(n-1)$-form on $\mathcal{H}^n$ with compact support. Then $\int_{\mathcal{H}^n}d\omega=\int_{\partial \mathcal{H}^n}\omega$.
