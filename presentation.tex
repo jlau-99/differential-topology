@@ -23,13 +23,6 @@
 \begin{document}
 	
 \frame{\titlepage}
-
-\begin{frame}
-	\frametitle{Table of Contents}
-	\tableofcontents
-\end{frame}
-
-\section{Manifolds}
 	
 \begin{frame}{Stokes' Theorem}
     Stokes' Theorem:\[\int_Md\omega = \int_{\partial M} \omega\]
@@ -37,6 +30,14 @@
     Special cases: \[\int_{\partial D} Pdx+Qdy = \int_D \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) dA\]
     \[\int_{\partial V}  F\cdot dS = \int_V \text{div} F\]
 \end{frame}
+
+\begin{frame}
+	\frametitle{Table of Contents}
+	\tableofcontents
+\end{frame}
+
+\section{Manifolds}
+
 
 \begin{frame}{Upper Half Space}
     \begin{block}{}
@@ -65,12 +66,15 @@
 
 \begin{frame}{Examples}
     \begin{center}  
-    \includegraphics[scale=0.6]{torus.png}
+    \includegraphics[scale=0.5]{torus.png}
     \end{center}
 \end{frame}
 
 \begin{frame}{Examples}
-    \includegraphics[scale=0.6]{torus1.PNG}
+    \begin{center}
+        \includegraphics[scale=0.8]{half_torus.png}
+        
+    \end{center}
 \end{frame}
 
 \section{Tangent Space and differential forms}
@@ -142,10 +146,17 @@
     \end{align*}
 \end{frame}
 
-\begin{frame}{Green's theorem}
-    \begin{center}
-        $\oint_{\partial D}Pdx+Qdy=\int_D(Q_x-P_y)dA$
-    \end{center}
+\begin{frame}{Stokes' theorem}
+    \begin{align}
+        \int_M{d\omega}&=\sum_\alpha\int_{U_\alpha}\rho_\alpha d\omega\\
+        &=\sum_\alpha\int_{U_\alpha}d(\rho_\alpha\omega)\\
+        &=\sum_\alpha\int_{\phi(U_\alpha)}(\phi^{-1})^*d(\rho_\alpha\omega)\\
+        &=\sum_\alpha\int_{\phi(U_\alpha)}d(\phi^{-1})^*(\rho_\alpha\omega)\\
+        &=\sum_\alpha\int_{\partial\phi(U_\alpha)}(\phi^{-1})^*\rho_\alpha\omega\\
+        &=\sum_\alpha\int_{\phi(\partial U_\alpha)}(\phi^{-1})^*\rho_\alpha\omega\\
+        &=\sum_\alpha\int_{\partial U_\alpha} \rho_\alpha\omega\\
+        &=\int_{\partial M}\omega
+    \end{align}
 \end{frame}
 
 \end{document}

@@ -1,4 +1,5 @@
 \documentclass[]{article}
+\usepackage[]{babel}
 \usepackage{amsmath, amssymb, amsthm, graphicx}
 \usepackage[shortlabels]{enumitem}
 
@@ -61,13 +62,19 @@ Many properties of smooth maps on open sets also hold for smooth maps on arbitra
     A $n$ dimensional manifold $M$ is a Hausdorff, second countable topological space together with a maximal atlas.
 \end{definition}
 
-By Theorem 1.4, to construct a manifold, we only need to specify a topological space and an atlas. We write $M$ instead of $(M, \mathcal{A})$ for manifolds. From now on, when we say a chart on $M$, we mean a chart in $\mathcal{A}$.
+By Theorem 1.4, in order to construct a manifold, we only need to specify a topological space and an atlas. We write $M$ instead of $(M, \mathcal{A})$ for manifolds. From now on, when we say a chart on $M$, we mean a chart in $\mathcal{A}$.
 
-\begin{theorem}[Smooth invariance of domain]
+\begin{theorem}[Invariance of domain]
     Let $f:U\rightarrow S$ be a diffeomorphism, where $U$ is open in $\mathbb{R}^n$ and $S\subset \mathbb{R}^n$ is an arbitrary subset. Then $S$ is open in $\mathbb{R}^n$.
 \end{theorem}
 \begin{proof}
-    Let $p\in U$. Since $f^{-1}$ is smooth, there exists a neighborhoog $V$ of $f(p)$ and a smooth function $g:V \rightarrow \mathbb{R}^n$ such that $g|_{V\cap S}=f^{-1}$. Then, $g\circ f$ is the identity on $f^{-1}(V)$, which is open. So, \[(Jg(f(p)))(Jf(p))=I\], and $\Det(Jf(p))\neq 0$. By the inverse function theorem, there are neighborhoods $U_p\subset U, V_{f(p)}\subset V$ such that $f:U_p \rightarrow V_{f(p)}$ is a diffeomorphism. We also have \[V_{f(p)}=f(U_p)\subset f(U)=S.\] For each $p\in U$, we can find an open set $V_{f(p)}\mathbb{R}^n$ such that $V_{f(p)}\subset S$. So, $S$ is open.
+    Let $p\in U$. Since $f^{-1}$ is smooth, there exists a neighborhood $V$ of $f(p)$ and a smooth function $g:V \rightarrow \mathbb{R}^n$ such that $g|_{V\cap S}=f^{-1}$.
+\begin{center}
+    
+    \includegraphics[scale=0.5]{smooth_invariance.PNG}
+\end{center}
+
+    Then, $g\circ f$ is the identity on $f^{-1}(V)$, which is open. So, \[(Jg(f(p)))(Jf(p))=I,\] and $\Det(Jf(p))\neq 0$. By the inverse function theorem, there are neighborhoods $U_p\subset U, V_{f(p)}\subset V$ such that $f:U_p \rightarrow V_{f(p)}$ is a diffeomorphism. We also have \[V_{f(p)}=f(U_p)\subset f(U)=S.\] For each $p\in U$, we can find an open set $V_{f(p)}\mathbb{R}^n$ such that $V_{f(p)}\subset S$. So, $S$ is open.
 \end{proof}
 
 \begin{corollary}
@@ -81,7 +88,7 @@ By Theorem 1.4, to construct a manifold, we only need to specify a topological s
     Let $M$ be a manifold. A point $p\in M$ is a boundary point if for some chart $(U, \phi)$, $\phi(p)\in \partial \mathcal{H}^n$. The set of all boundary points is the boundary $\partial M$.
 \end{definition}
 
-Suppose $(U,\phi),(V,\psi)$ are charts containing $p$, with $\phi(p)\in\partial \mathcal{H}^n $. By Corollary 1.7, $\psi(p)=\psi\circ\phi^{-1}(\phi(p))$ is also a boundary point. Thus, $\psi(p)$ is a boundary point for all charts $(V, \psi)$. If the boundary of a manifold is empty, then for any chart $(U, \phi)$, $\phi(U)$ is open in $\mathbb{R}^n$.
+Suppose $(U,\phi)$ and $(V,\psi)$ are charts containing $p$, with $\phi(p)\in\partial \mathcal{H}^n $. By Corollary 1.7, $\psi(p)=\psi\circ\phi^{-1}(\phi(p))$ is also a boundary point. Thus, $\psi(p)$ is a boundary point for all charts $(V, \psi)$. If the boundary of a manifold is empty, then for any chart $(U, \phi)$, $\phi(U)$ is open in $\mathbb{R}^n$.
 
 \begin{proposition}
     Let $M$ be a manifold with non empty boundary. Then, $\partial M$ is a manifold with empty boundary.
@@ -144,6 +151,13 @@ It is straightforward to check that $T_pM$ is a vector space, and that $F_*$ is 
 \end{proof}
 
 \begin{definition}
+    Let $p\in M$. The set of all alternating multilinear functions from $(T_pM)^k$ to $\mathbb{R}$ is denoted by $\Lambda^kT_pM$. That is, for $\omega_p\in\Lambda^kT_pM$ and $v_1, \dots, v_n, w_i\in T_pM$, \begin{align*}
+        \omega_p(\dots, v_i, v_{i+1}, \dots)=&-\omega_p(\dots,  v_{i+1},v_i, \dots)&1\leq i<n\\
+        \omega_p(\dots, v_i+cw_i, \dots)=&\omega_p(\dots, v_i, \dots)+c\omega_p(\dots, w_i, \dots)&1\leq i\leq n
+    \end{align*}
+\end{definition}
+
+\begin{definition}
     A $k$-form is a map that sends $p\in M$ to $\omega_p\in \Lambda^kT_pM$.
 \end{definition}
 
@@ -154,7 +168,7 @@ Let $\omega$ be a $k$-form. We say that $\omega$ is smooth if for every chart $(
 \end{definition}
 
 \begin{definition}
-    A vector field $X$ on $M$ is a function that assigns to each $p\in M$ a tangent vector $X_p\in T_pM$. A vector field is smooth if for every chart $(U, x_1, \dots, x_n)$, the coefficients $a_i$ in $X=\sum_{i=1}^na_i\frac{\partial}{\partial x_i}|_p$ are smooth. Given a 1-form $\omega$, we define $\omega(X):M \rightarrow \mathbb{R}, p\mapsto \omega_p(X_p)$.
+    A vector field $X$ on $M$ is a function that assigns to each $p\in M$ a tangent vector $X_p\in T_pM$. A vector field is smooth (continuous) if for every chart $(U, x_1, \dots, x_n)$, the coefficients $a_i$ in $X=\sum_{i=1}^na_i\frac{\partial}{\partial x_i}|_p$ are smooth (continuous). Given a 1-form $\omega$, we define $\omega(X):M \rightarrow \mathbb{R}, p\mapsto \omega_p(X_p)$.
 \end{definition}
 
 \begin{definition}
@@ -178,8 +192,14 @@ Let $\omega$ be a $k$-form. We say that $\omega$ is smooth if for every chart $(
     The pullback of a differential form $\omega$ is defined as $(F^*\omega)_p=F^*(\omega_p)$.
 \end{definition}
 
+Some properties of the pullback include
+
 \begin{proposition}
-    $F^*d\omega=dF^*\omega$
+    $F^*(\omega\wedge\tau)=F^*\omega\wedge F^*\tau$.
+\end{proposition}
+
+\begin{proposition}
+    $F^*d\omega=dF^*\omega$.
 \end{proposition}
 
 \begin{proposition}
@@ -198,31 +218,115 @@ Let $\omega$, $\tau$ be non-vanishing differential $n$-forms, and $(U, \phi)$ be
     An oriented atlas is an atlas $\mathcal{A}$ such that for all $(U, \phi),(V, \psi)\in \mathcal{A}$, $\Det(J(\psi\circ\phi ^{-1}))>0$.
 \end{definition}
 
+There is actually an equivalence between orientations and equivalence classes of oriented atlases. Let $\{(U_\alpha, \phi_\alpha)\}\sim \{(V_\beta, \psi_\beta)\}$ if $\Det(J\psi_\beta\circ\phi^{-1}_\alpha)>0$ for all $\alpha, \beta$.
+
 \begin{theorem}
-    \[\text{Orientations} \iff \text{Oriented atlas}\]
-    \[ \omega \iff \omega_p(e_1,\dots,e_n)>0,\] where $e_1,\dots,e_n$ is the basis induced by $(U, \phi)$.
+    Given an orientation $[\omega]$, there exists an oriented atlas $\mathcal{A}_\omega$ such that $\omega_p(\partial_1|_p,\dots,\partial_n|_p)>0$ for all $(U, x_1, \dots, x_n)$. Given an oriented atlas, it is possible to construct a non vanishing $n$-form. Then, the identification $[\omega]\Leftrightarrow[\mathcal{A}_\omega]$ is well defined.
 \end{theorem}
 
+\begin{proof}
+    See [Tu, Theorem 21.5, Theorem 21.10].
+\end{proof}
+
 \begin{definition}
-    Let $f:S \rightarrow \mathbb{R}$ for some topological space $S$. The support of $f$, $\supp(f)$, is the closure of the set $\{p\in S\mid f(p)\neq 0\}$. Let $\omega\in \Omega^k(M)$. The support of $\omega$ is the closure of the set $\{p\in M\mid \omega_p\neq 0\}$.
+    A diffeomorphism $F:N \rightarrow M$ between oriented manifolds is orientation preserving if $[F^*\omega]$ is the orientation for $N$, where $[\omega]$ is the orientation for $M$.
+\end{definition}
+
+The above definition is well defined, and is in fact equivalent to the condition that $\Det(J(\psi\circ F^\circ\phi^{-1}))>0$ for all charts $(U, \phi)$ on $N$ and $(V, \psi)$ on $M$ [Tu, Proposition 21.8, p.244].
+
+
+
+Next, we define the orientation for the boundary.
+\begin{definition}
+    Let $X_p\in T_pM$, $\omega_p\in \Lambda^kT_pM$. We define a $\iota_{X_p}\omega_p\in \Lambda^{k-1}T_pM$ called the interior multiplication of $\omega_p$ with $X_p$, defined by
+    \[(\iota_{X_p}\omega_p)(v_1, \dots, v_{k-1})=\omega_p(X_p, v_1, \dots, v_{k-1}).\]
+\end{definition}
+
+We also define the interior multiplication of a differential form $\omega$ with a vector field $X$ by
+\[(\iota_X\omega)_p=\iota_{X_p}\omega_p.\]
+
+\begin{proposition}
+    Let $\omega_1, \dots, \omega_k\in \Lambda^1T_pM$, and $v\in T_pM$. Then \[\iota_v(\omega_1\wedge \dots\wedge \omega_k)=\sum_{i=1}^k (-1)^{k-1}\omega_i(v)\omega_1\wedge\dots\wedge\widehat{\omega_i}\wedge\dots\wedge\omega_k,\] where the $\widehat{\ \ }$ on $\omega_i$ means that $\omega_i$ is omitted from the wedge product.
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        &\iota_{v_1}(\omega_1\wedge \dots\wedge \omega_k)(v_2, \dots, v_k)\\
+        =&\omega_1\wedge\dots\wedge\omega_k(v_1\dots, v_k)\\
+        =&\Det(\omega_i(v_j))\\
+        =&\sum_{i=1}^k(-1)^{k-1}\omega_i(v_1)\Det(\omega_\ell(v_j))_{\ell\neq i, j>1}\\
+        =&\sum_{i=1}^k (-1)^{k-1}\omega_i(v_1)\omega_1\wedge\dots\wedge\widehat{\omega_i}\wedge\dots\wedge\omega_k(v_2, \dots, v_k)
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    A vector $v\in T_pM$ is outward pointing if for some chart $(U, \phi)$, $v=\sum a_i\partial_i|_p$, where $a_n<0$. An outward pointing vector field is a map that assigns to each $p\in \partial M$ an outward pointing vector $v_p\in T_pM$.
+\end{definition}
+
+\begin{proposition}
+    Every manifold has an outward pointing vector field.
+\end{proposition}
+\begin{proof}
+    See [Tu, Proposition 22.10, p.254].
+\end{proof}
+
+\begin{proposition}
+    Let $M$ be an oriented manifold with orientation $[\omega]$, and $X$ be an outward pointing vector field. Then $\iota_X\omega$ is a non vanishing $(n-1)$-form on $\partial M$. The orientation $[\iota_X\omega]$ for $\partial M$ is well defined.
+\end{proposition}
+
+\begin{proof}
+    See [Tu, Proposition 22.11, p.255].
+\end{proof}
+
+For example, $-\partial_n$ is an outward pointing vector field for $\mathcal{H}^n$. Then, the boundary of $\mathcal{H}^n$ is \[\iota_{-\partial_n}(dx_1\wedge\dots\wedge dx_n)=-\iota_{\partial_n}(dx_1\wedge\dots\wedge dx_n)=(-1)^ndx_1\wedge\dots\wedge dx_{n-1}.\]
+
+Finally, we define integration of differential forms.
+
+\begin{definition}
+    Let $f:S \rightarrow \mathbb{R}$ for some topological space $S$. The support of $f$, $\supp(f)$, is the closure of the set $\{p\in S\mid f(p)\neq 0\}$. Let $\omega\in \Omega^k(M)$. The support of $\omega$ is the closure of the set $\{p\in M\mid \omega_p\neq 0\}$. The set of compactly supported differential $k$-forms on $M$ is denoted by $\Omega^k_c(M)$.
 \end{definition}
 
 \begin{definition}[Integration on a $\mathbb{R}^n$]
-    Let $\omega$ be a differential $n$-form with compact support on $(U, \phi)$, where $U\subset\mathbb{R}^n$. Then $\omega=f(x)dx_1\wedge\dots\wedge dx_n$ for some smooth $f$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_U f$.
+    Let $\omega\in \Omega^n_c(U)$, where $U\subset\mathbb{R}^n$. Then $\omega=f(x)dx_1\wedge\dots\wedge dx_n$ for some smooth $f$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_U f$.
 \end{definition}
 
 \begin{definition}[Integration on a chart]
-    Let $\omega$ be a differential $n$-form with compact support on $(U, \phi)$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_{\phi(U)}(\phi^{-1})^*\omega$. 
+    Let $\omega\in \Omega^n_c(U)$ for some $(U, \phi)$. The integral of $\omega$ over $U$ is $\int_U\omega=\int_{\phi(U)}(\phi^{-1})^*\omega$. 
 \end{definition}
 
-We show that the integral does not depend on $\phi$. Let $\phi, \psi$ be two coordinate functions on $U$. By the change of variables formula, $\int_{\phi(U)}(\phi^{-1})^*\omega=\int_{\psi(U)}$
+To show that the integral does not depend on $\phi$, we first need a lemma.
+
+\begin{lemma}
+    Let $U, V$ be open in $\mathbb{R}^n$, $T:V \rightarrow U$ be a diffeomorphism, and $\omega\in \Omega^n_c(U)$. If $\Det(JT)>0$ on $V$, then $\int_{V}T^*\omega=\int_U\omega$.
+\end{lemma}
+
+\begin{proof}
+    \begin{align*}
+        \int_VT^*\omega=&\int_VT^*(fdx_1\wedge\dots\wedge dx_n)\\
+        =&\int_V(f\circ T)T^*dx_1\wedge\dots\wedge T^*dx_n\\
+        =&\int_V(f\circ T)dT^*x_1\wedge\dots\wedge dT^*x_n\\
+        =&\int_V(f\circ T)dx_1\circ T\wedge\dots\wedge dx_n\circ T
+    \end{align*}
+    Expressing each $dx_i\circ T$ as $\sum_j \frac{\partial x_i\circ T}{\partial y_j}dy_j$, we see that \[dx_1\circ T\wedge\dots\wedge dx_n\circ T=\Det(JT)dy_1\wedge\dots\wedge dy_n.\] So, this becomes
+    \begin{align*}
+        &\int_V(f\circ T)\Det(JT)dy_1\wedge\dots\wedge dy_n\\
+        =&\int_V(f\circ T)|\Det(JT)|dy_1\wedge\dots\wedge dy_n\\
+        =&\int_V(f\circ T)|\Det(JT)|dy_1\dots dy_n\\
+        =&\int_U fdx_1\dots dx_n\\
+        =&\int_U\omega
+    \end{align*}
+\end{proof}
+
+Let $\phi, \psi$ be two coordinate functions on $U$ such that $\Det (J(\phi\circ\psi^{-1}))>0$. By the lemma, $\int_{\phi(U)}(\phi^{-1})^*\omega=\int_{\psi(U)}(\phi\circ\psi^{-1})^*(\phi^{-1})^*\omega=\int_{\psi(U)}(\psi ^{-1})^*\omega$, so $\int_U\omega$ is well defined.
+
+To define integration on manifolds, we need a partition of unity.
 
 \begin{definition}
     A collection $\{A_\alpha \}$ of subsets of a topological space $S$ is said to be locally finite if every point $q$ in $S$ has a neighborhood that meets only finitely many of the sets $\{A_\alpha \}$.
 \end{definition}
 
 \begin{definition}[Partition of Unity]
-    A partition of Unity on a manifold $M$ is a collection of nonnegative smooth functions $\{\rho_\alpha:M \rightarrow \mathbb{R}\}_{\alpha\in A}$ such that
+    A partition of unity on a manifold $M$ is a collection of nonnegative smooth functions $\{\rho_\alpha:M \rightarrow \mathbb{R}\}_{\alpha\in A}$ such that
     \begin{enumerate}[(i)]
         \item the collection of supports, $\{\supp\rho_\alpha\}_{\alpha\in A}$, is locally finite,
         \item $\sum_{\alpha\in A} \rho_\alpha = 1.$
@@ -241,6 +345,7 @@ We show that the integral does not depend on $\phi$. Let $\phi, \psi$ be two coo
 \end{proof}
 
 \begin{proposition}
+\label{finiteforms}
     Let $\{\rho_\alpha\}_{\alpha\in A}$ be a collection of functions on $M$, and $\omega$ be a differential $k$-form with compact support. If $\{\supp \rho_\alpha\}_{\alpha\in A}$ is locally finite, then $\rho_\alpha\omega\equiv0$ for all but finitely many $\alpha$.
 \end{proposition}
 
@@ -252,18 +357,159 @@ We show that the integral does not depend on $\phi$. Let $\phi, \psi$ be two coo
     Let $\omega$ be a differential $n$-form on an oriented manifold $M$, and let $\{\rho_\alpha\}$ be a partition of unity subordinate to the oriented atlas. The integral of $\omega$ over $M$, denoted by $\int_M \omega$, is defined to be $\sum_{\alpha\in A}\int_{U_\alpha}\rho_\alpha\omega$.
 \end{definition}
 
-For the definition to make sense, we need to show that the integral does not depend on the atlas and the partition of unity.
+By Lemma \ref{finiteforms}, the sum is finite. For the definition to make sense, we need to show that the integral does not depend on the atlas and the partition of unity. Let $\{(U_\alpha, \phi_\alpha)\},\{(V_\beta, \psi_\beta)\}$ be oriented atlases and $\{\rho_\alpha\},\{\chi_\beta\}$ be subordinate partitions of unity.
 
-Let $\{(U_\alpha, \phi_\alpha)\}$ and $\{(V_\beta, \psi_\beta)\}$ be oriented atlases and $\{\rho_\alpha\}, \{\chi_\beta\}$ be subordinate partitions of unity. 
+\begin{align*}
+    \sum_{\alpha}\int_{U_\alpha}\rho_\alpha\omega
+    =&\sum_{\alpha}\int_{U_\alpha}\rho_\alpha(\sum_\beta\chi_\beta)\omega\\
+    =&\sum_{\alpha}\sum_\beta\int_{U_\alpha}\rho_\alpha\chi_\beta\omega\\
+    =&\sum_{\alpha}\sum_\beta\int_{U_\alpha\cap V_\beta}\rho_\alpha\chi_\beta\omega
+\end{align*}
+where the last equality holds since the support of $\rho_\alpha\chi_\beta$ is contained in $U_\alpha\cap V_\beta$.
+
+To prove Stokes' theorem, we first prove it for $\mathcal{H}^n$.
 
 \begin{theorem}
-    Let $\omega$ be a smooth $(n-1)$-form on $\mathcal{H}^n$ with compact support. Then $\int_{\mathcal{H}^n}d\omega=\int_{\partial \mathcal{H}^n}\omega$.
+    Let $\omega$ be a smooth $(n-1)$-form on $\mathcal{H}^n$ with compact support, and $\iota:\partial M \rightarrow M$ be the inclusion map. Using $\int_{\partial \mathcal{H}^n}\omega$ as shorthand for $\int_{\partial \mathcal{H}^n}\iota^*\omega$, $\int_{\mathcal{H}^n}d\omega=\int_{\partial \mathcal{H}^n}\omega$.
 \end{theorem}
+
+\begin{proof}
+    We know that $\omega=\sum f_i dx_1\wedge\dots\wedge\widehat{dx_i}\wedge\dots\wedge dx_n$. So, \begin{align*}
+        d\omega=&\sum_i\left(\sum_j\frac{\partial f_i}{\partial x_j}dx_j\right)\wedge dx_1\wedge\dots\wedge\widehat{dx_i}\wedge\dots\wedge dx_n\\
+        =&\sum_i\frac{\partial f_i}{\partial x_i}dx_i\wedge dx_1\wedge\dots\wedge\widehat{dx_i}\wedge\dots\wedge dx_n\\
+        =&\sum_i(-1)^{i-1}\frac{\partial f_i}{\partial x_i}dx_1\wedge\dots\wedge dx_n.
+    \end{align*}
+    Then, \begin{align*}
+        \int_{\mathcal{H}^n}d\omega=&\sum_i(-1)^{i-1}\int_{\mathcal{H}^n}\frac{\partial f_i}{\partial x_i}.
+    \end{align*}
+    For $i<n$, \begin{align*}
+        \int_{\mathcal{H}^n}\frac{\partial f_i}{\partial x_i}=&\int_0^\infty\int_{-\infty}^\infty\dots\int_{-\infty}^\infty\frac{\partial f_i}{\partial x_i}dx_idx_1\dots dx_n+(-1)^{n-1}.
+    \end{align*}
+    Since $\omega$ is compactly supported, the support is contained in $[-a,a]^{n-1}\times [0,a]$ for some $a$. So, the innermost integral is
+    \begin{align*}
+        \int_{-\infty}^\infty\frac{\partial f_i}{\partial x_i}dx_i=&\int_{-a}^a\frac{\partial f_i}{\partial x_i}dx_i\\
+        =&f_i(\dots,a,\dots)-f_i(\dots,-a, \dots)\\
+        =&0
+    \end{align*}
+    Thus, \begin{align*}
+        \int_{\mathcal{H}^n}d\omega=&(-1)^{n-1}\int_{\mathcal{H}^n}\frac{\partial f_n}{\partial x_n}\\
+        =&(-1)^{n-1}\int_{\mathbb{R}^{n-1}}\int_0^a\frac{\partial f_n}{\partial x_n}dx_ndx_1\dots dx_{n-1}\\
+        =&(-1)^n\int_{\mathbb{R}^{n-1}}f_n(x_1, \dots, x_{n-1}, 0)
+    \end{align*}
+    On the other hand, \begin{align*}
+        \int_{\partial \mathcal{H}^n}\iota^*\omega=&\int_{\partial \mathcal{H}^n}\iota^*\sum f_i dx_1\wedge\dots\wedge\widehat{dx_i}\wedge\dots\wedge dx_n\\
+        =&\int_{\partial \mathcal{H}^n}\sum \iota^*f_i d\iota^*x_1\wedge\dots\wedge\widehat{d\iota^*x_i}\wedge\dots\wedge d\iota^*x_n.
+    \end{align*}
+    But $\iota^*x_n=0$ on $\partial \mathcal{H}^n$. Writing $\iota^*x_i$ as just $x_i$, this becomes \begin{align*}\int_{\partial \mathcal{H}^n}\iota^*f_n dx_1\wedge\dots\wedge dx_{n-1}=&(-1)^n\int_{\partial \mathcal{H}^n}\iota^*f_n d(-1)^nx_1\wedge\dots\wedge dx_{n-1}\\
+        =&(-1)^n\int_{\mathbb{R}^{n-1}}f_n(x_1, \dots, x_{n-1}, 0),
+    \end{align*} as $(\partial \mathcal{H}^n, (-1)^nx_1, \dots, x_{n-1})$ is a chart in the oriented atlas for $\partial \mathcal{H}^n$ with the boundary orientation.
+\end{proof}
+
+Now, we prove Stokes' theorem for manifolds.
 
 \begin{theorem}
     Let $\omega$ be a smooth $(n-1)$-form on an oriented manifold with boundary $M$. Then $\int_{M}d\omega=\int_{\partial M}\omega$.
 \end{theorem}
 
+\begin{proof}
+    \begin{align*}
+        \int_M d\omega=&\sum_\alpha\int_{U_\alpha}d\rho_\alpha \omega\\
+        =&\sum_\alpha\int_{\phi(U_\alpha)}(\phi^{-1})^*d\rho_\alpha \omega\\
+        =&\sum_\alpha\int_{\phi(U_\alpha)}d(\phi^{-1})^*\rho_\alpha \omega\\
+        =&\sum_\alpha\int_{\partial\phi(U_\alpha)}\iota_{\mathcal{H}^n}^*(\phi^{-1})^*\rho_\alpha \omega\\
+        =&\sum_\alpha\int_{\phi(\partial U_\alpha)}(\phi^{-1}\circ\iota_{\mathcal{H}^n})^*\rho_\alpha \omega
+    \end{align*}
+    Let $\phi'=(x_1|_{\partial M}, \dots, x_{n-1}|_{\partial M})$, and $\iota_M:\partial M \rightarrow M$ be the inclusion map. Since $\phi^{-1}\circ\iota_{\mathcal{H}^n}=\iota_M\circ\phi'^{-1}$, this becomes \begin{align*}
+        &\sum_\alpha\int_{\phi'(\partial U_\alpha)}(\iota_M\circ\phi'^{-1})^*\rho_\alpha \omega\\
+        =&\sum_\alpha\int_{\phi'(\partial U_\alpha)}(\phi'^{-1})^*\iota_M^*\rho_\alpha \omega\\
+        =&\sum_\alpha\int_{\partial U_\alpha}\iota_M^*\rho_\alpha \omega\\
+        =&\int_{\partial M}\omega
+    \end{align*}
+\end{proof}
 
+\section{Hairy Ball Theorem}
+
+\begin{theorem}{Hairy Ball Theorem}
+    There exists a nowhere vanishing vector field on $S^n$ if and only if $n$ is odd.
+\end{theorem}
+
+To prove this, we first need a lemma on homotopies between manifolds.
+
+\begin{definition}
+    If $X$ and $Y$ are topological spaces and $F_0, F_1 : X \rightarrow  Y$ are continuous maps, a homotopy from $F_0$ to $F_1$ is a continuous map $H:X\times I \rightarrow  Y$ satisfying\begin{align*}
+        H(x,0) = F_0(x)\\
+        H(x,1) = F_1(x)
+    \end{align*}
+    for all $x\in X$, where $I$ is the unit interval $ [0,1]$. If there exists a homotopy from $F_0$ to $F_1$, we say that $F_0$ and $F_1$ are
+    homotopic. If there exists a smooth homotopy $H:X\times I\rightarrow Y$ from $F_0$ to $F_1$, then we say that $F_0$ and $F_1$ are smoothly homotopic.
+\end{definition}
+
+\begin{lemma}
+    \label{homotopy}
+    Suppose $N$ is a manifold, $M$ is a manifold with empty boundary, and $F,G: N \rightarrow  M$ are smooth maps. If $F$ and $G$ are homotopic, then they are smoothly homotopic.
+\end{lemma}
+
+\begin{proof}
+    See [Lee, Theorem 6.29, p.142].
+\end{proof}
+
+We now prove the Hairy Ball Theorem.
+
+\begin{theorem}
+    The following are equivalent:
+    \begin{enumerate}
+        \item There exists a nowhere-vanishing continuous vector field on $S^n$.
+        \item There exists a continuous map $V : S^n \rightarrow S^n$ satisfying $V(x)\perp x$ (with respect to the Euclidean dot product on $\mathbb{R}^{n+1}$) for all $x\in S^n$.
+        \item The antipodal map $\alpha:S^n \rightarrow S^n$, $x\mapsto -x$ is homotopic to $\id_{S^n}$
+        \item The antipodal map $\alpha$ is orientation-preserving.
+        \item $n$ is odd.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1\implies 2$: Suppose there is a nowhere vanishing vector field on $S^n$. Let $\iota:S^n \rightarrow \mathbb{R}^{n+1}$ be the inclusion map. Define $V:S^n \rightarrow \mathbb{R}^{n+1}$ by $V(p)=\iota_*(X_p)$, where we use the standard identification of $T_p\mathbb{R}^{n+1}$ with $\mathbb{R}^{n+1}$. As $X$ is non-vanishing, we can normalize $V$ to get a continuous map $V':S^n \rightarrow S^n$ satisfying $V(x)\perp x$.
+
+    $2\implies 3$: Let $V:S^n \rightarrow S^n$ be a continuous map satisfying $V(x)\perp x$ for all $x\in S^n$. Let $H:S^n\times I\rightarrow S^n$ given by $H(x, t)=x\cos(t\pi)+V(x)\sin(t\pi)$. Then, $H(x, 0)=x=\id_{S^n}(x)$ and $H(x, 1)=-x=\alpha(x)$. Since $V$ is continuous, $H$ is continuous. Also, since $V(x)\perp x$, $|H(x, t)|^2=1$, so $H(x, t)\in S^n$. Thus, $H$ is a homotopy from $\id_{S^n}$ to $\alpha$.
+
+    $3\implies 4$: We prove a more general version for this implication: suppose $M$ and $N$ are oriented, compact, connected, smooth manifolds,
+    and $F, G:M \rightarrow N$ are homotopic diffeomorphisms. Then $F$ and $G$
+    are either both orientation-preserving or both orientation-reversing. The implication $(3\Rightarrow4)$ is a direct consequence of the lemma.
+    
+    To prove this, first note that by Lemma \ref{homotopy}, there is a smooth homotopy $H:M\times I \rightarrow N$ from $F$ to $G$. Let $[\omega]$ be the orientation for $N$. Then, since $d\omega=0$, so \begin{align*}
+        0=&\int_{M\times I}H^*d\omega\\
+        =&\int_{M\times I}dH^*\omega\\
+        =&\int_{\partial M\times I}H^*\omega\\
+        =&\int_{M\times \{0\}}H^*\omega+\int_{M\times \{1\}}H^*\omega\\
+        =&\pm\left(\int_M G^*\omega-\int_M F^*\omega\right)
+    \end{align*}
+    where the $\pm$ comes from which orientation we choose for $M\times I$. The application of Stokes' theorem requires that the forms have compact support, which they do as they are non-vanishing on compact manifolds. So, $\int_M G^*\omega=\int_M F^*\omega$. They cannot be equal to 0 as $M$ is connected. So, they are either both positive or both negative, which means that $[F^*\omega]=[G^*\omega]$ and concludes the proof for the lemma.
+
+    $4\implies 5$: Let $B^{n+1}$ be the closed unit ball in $\mathbb{R}^{n+1}$, $A:B^{n+1} \rightarrow B^{n+1}$ be the map $x \mapsto -x$, $\Omega=dx_1\wedge\dots\wedge dx_{n+1}$, and $X=\sum x_i\frac{\partial}{\partial x_i}$. The orientation of $S^n$ is given by $\omega=\iota^*(\iota_X(\Omega))$, where $\iota$ is the inclusion map. What we want to show is that $\alpha^*\omega=\omega$. First, note that $A\circ \iota=\iota\circ\alpha$, so 
+    \begin{align*}
+        \alpha^*\omega=&\alpha^*\iota^*(\iota_X\Omega)
+        =\iota^*A^*(\iota_X\Omega).
+    \end{align*}
+    Also, $A_*X_{p}=X_{A(p)}$ by direct computation, and $A^*\Omega=(-1)^{n+1}\Omega$, using the distributive property of the pullback and that it commutes with $d$. Therefore, \begin{align*}
+        A^*(\iota_X\Omega)_p(v_1, \dots, v_n)=&(\iota_X\Omega)_{A(p)}(A_*v_1, \dots, A_*v_n)\\
+        =&\Omega_{A(p)}(X_{A(p)}, A_*v_1, \dots, A_*v_n)\\
+        =&\Omega_{A(p)}(A_*X_p, A_*v_1, \dots, A_*v_n)\\
+        =&(A^*\Omega)_p(X_p, v_1, \dots, v_n)\\
+        =&(-1)^{n+1}\Omega_p(X_p, v_1, \dots, v_n)\\
+        =&(-1)^{n+1}(\iota_X\Omega)_p(v_1, \dots, v_n).
+    \end{align*}
+    Thus, \[\alpha^*\omega=\iota^*A^*(\iota_X\Omega)=(-1)^{n+1}\iota^*(\iota_X\Omega)=(-1)^{n+1}\omega,\]
+    so $\alpha$ is orientation preserving if and only if $n$ is odd.
+    
+    $5\implies 1$: If $n$ is odd, we obtain a continuous map $V:p\mapsto ip$ by considering points in $S^n$ as points in $\mathbb{C}^{(n+1)/2}$. Then, we get a non-vanishing vector field $X_p=\iota^{-1}(V(p))=\gamma_*(\frac{d}{dt}|_{t=0})$, where $\gamma(t)=e^{it}p$.
+
+\end{proof}
+
+\begin{thebibliography}{9}
+    \bibitem{tu}
+    Loring W. Tu (2010) \emph{An Introduction to Manifolds}, Springer.
+    
+    \bibitem{lee}
+    John M. Lee (2013) \emph{Introduction to Smooth Manifolds}, Springer.
+\end{thebibliography}
 
 \end{document}
